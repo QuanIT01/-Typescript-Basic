@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
-
-const reviews = [
+// arrObj: ()[] =[{}]
+const reviews: {
+  name: string;
+  image: string;
+  stars: number;
+  premiumUser: boolean;
+  date: string;
+}[] = [
   {
     name: "Evondev",
     image: "",
@@ -21,6 +27,38 @@ const reviews = [
     stars: 3,
     premiumUser: false,
     date: "04/08/2022",
+  },
+];
+
+const travelItem: {
+  image: string;
+  name: string;
+  totalReviews: number;
+  rating: number;
+  location: string;
+  price: number;
+  date: string;
+  departure: string;
+  features: {
+    freeWifi: boolean;
+    freeParking: boolean;
+    specialOffer: boolean;
+  };
+}[] = [
+  {
+    image: "https://source.unsplash.com/random",
+    name: "Zuich , Switzerland",
+    totalReviews: 148,
+    rating: 4.8,
+    location: "Switzerland",
+    price: 300,
+    date: "23/05/2001",
+    departure: "Viet Nam",
+    features: {
+      freeWifi: true,
+      freeParking: true,
+      specialOffer: false,
+    },
   },
 ];
 
@@ -45,6 +83,8 @@ const user: {
 function App() {
   const [count, setCount] = useState(0);
   function displayReview(totalReviews: number, name: string, premium: boolean) {
+    //const travelItem: image, name , totalReviews, rating , location , price, departure, features: wifi , parking , offer
+
     return (
       <>
         Review total <strong>{totalReviews}</strong> | Last reviewed by{" "}
