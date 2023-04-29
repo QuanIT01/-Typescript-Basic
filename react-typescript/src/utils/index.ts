@@ -1,4 +1,7 @@
 //const variable : datatypes = value
+
+import { FinalProduct, Product } from "./interface";
+
 //function
 export function total(a: number, b: number) {
   return a + b;
@@ -43,3 +46,15 @@ function raiseError(err: string): never {
 function reject() {
   return raiseError("error");
 }
+
+//interface
+
+const product: FinalProduct = {
+  name: "car",
+  brand: "bwm",
+  color: "red",
+};
+function addProduct(product: FinalProduct) {
+  product.brand;
+}
+addProduct(product);
