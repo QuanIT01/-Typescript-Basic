@@ -29,3 +29,17 @@ total(23, 5);
  */
 //function
 //void
+//unknow - ko biet kieu type
+let aNumber: unknown;
+aNumber = 100;
+if (typeof aNumber === "number") {
+  aNumber.toFixed(2);
+}
+//never - ko chua gia tri gi ca
+// represent return type of a fuction throw error
+function raiseError(err: string): never {
+  throw new Error(err);
+}
+function reject() {
+  return raiseError("error");
+}
