@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Permission } from "./utils/enums";
+import { Age } from "./utils/types";
 // arrObj: ()[] =[{}]
 const reviews: {
   name: string;
@@ -64,27 +66,31 @@ const travelItem: {
 
 //const obj: {} = {}
 //union type
-const user: {
-  firstName: string;
-  lastName: string;
-  age: number;
-  isStudent: boolean;
-  school: (string | number)[];
-  scores: number[];
-} = {
-  firstName: "Nguyen",
-  lastName: "Hong Quan",
-  age: 22,
-  isStudent: false,
-  school: ["HAUI , HA NOI", 88],
-  scores: [10, 9, 8],
-};
 
 function App() {
   const [count, setCount] = useState(0);
-  function displayReview(totalReviews: number, name: string, premium: boolean) {
-    //const travelItem: image, name , totalReviews, rating , location , price, departure, features: wifi , parking , offer
 
+  const user: {
+    firstName: string;
+    lastName: string;
+    age: Age; // literal
+    isStudent: boolean;
+    school: (string | number)[]; //union type
+    scores: number[]; //array type
+    contact: [number, string]; // tuple type
+    permission: Permission;
+  } = {
+    firstName: "Nguyen",
+    lastName: "Hong Quan",
+    age: 18,
+    isStudent: false,
+    school: ["HAUI , HA NOI", 88],
+    scores: [10, 9, 8],
+    contact: [123, "quan@gmail.com"],
+    permission: Permission.ADMIN,
+  };
+
+  function displayReview(totalReviews: number, name: string, premium: boolean) {
     return (
       <>
         Review total <strong>{totalReviews}</strong> | Last reviewed by{" "}
