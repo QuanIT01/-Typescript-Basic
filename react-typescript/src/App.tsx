@@ -24,6 +24,24 @@ const reviews = [
   },
 ];
 
+//const obj: {} = {}
+//union type
+const user: {
+  firstName: string;
+  lastName: string;
+  age: number;
+  isStudent: boolean;
+  school: (string | number)[];
+  scores: number[];
+} = {
+  firstName: "Nguyen",
+  lastName: "Hong Quan",
+  age: 22,
+  isStudent: false,
+  school: ["HAUI , HA NOI", 88],
+  scores: [10, 9, 8],
+};
+
 function App() {
   const [count, setCount] = useState(0);
   function displayReview(totalReviews: number, name: string, premium: boolean) {
