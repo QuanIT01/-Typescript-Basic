@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Permission } from "./utils/enums";
 import { Age } from "./utils/types";
+import { simpleUseState } from "./utils/tuple";
 // arrObj: ()[] =[{}]
 const reviews: {
   name: string;
@@ -69,7 +70,6 @@ const travelItem: {
 
 function App() {
   const [count, setCount] = useState(0);
-
   const user: {
     firstName: string;
     lastName: string;
