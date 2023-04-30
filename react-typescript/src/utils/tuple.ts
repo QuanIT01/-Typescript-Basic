@@ -10,16 +10,17 @@ function add3DCoordinate(
 add3DCoordinate([1, 100, 200], [200, 400, 600]);
 // useState const [value, setValue] = useState['evondev];
 //setvalue('developer);
-export function simpleUseState(val: string): [string, (v: string) => void] {
+export function simpleUseState(
+  val: string
+): [() => string, (v: string) => void] {
   return [
-    val,
+    () => val,
     (v: string) => {
       val = v;
     },
   ];
 }
-const [valueStr, setValueStr] = simpleUseState("evondev");
-
-console.log(valueStr); //evondev
-setValueStr("developer");
-console.log(valueStr); //developer
+const [strGetter, strSetter] = simpleUseState("evondev");
+console.log(strGetter); //evondev
+strSetter("developer");
+console.log(strGetter); //developer
