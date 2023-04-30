@@ -73,6 +73,21 @@ function information(id: number, ...names: string[]) {
 }
 information(1, "evondev", "tuan");
 // with callback
-//params with params
-// function ass types
+function handle(text: string, callback: () => void): void {
+  console.log(text);
+  callback();
+}
+
+// function as types
+type UpdayeArray = (n: number) => number;
+//function params with params
+function handleUpdateArray(numbers: number[], update: UpdayeArray): number[] {
+  return numbers.map((item) => update(item));
+}
+handleUpdateArray([1, 2, 3, 4, 5], (n) => n + 5);
 //function return function
+function handleValue(val: number): (n: number) => number {
+  return (n: number): number => n * val;
+}
+const value = handleValue(5);
+console.log(value(10)); //50
