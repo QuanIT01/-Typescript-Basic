@@ -24,19 +24,38 @@ const App = () => {
   const onClickItem = (item: string) => {
     alert(item);
   };
+  const products = [{ id: 1, title: "IPhone 14", price: 1500, store: "tgdd" }];
   return (
     <div>
       <Heading title="Todo App"></Heading>
-      {JSON.stringify(data)}
-      <List
+      {/* {JSON.stringify(data)} */}
+      {/* <List
         items={["javascript", "html", "css"]}
         onClickItem={(item: string) => onClickItem(item)}
-      ></List>
-      <Boxed>
+      ></List> */}
+      {/* <Boxed>
         <div>abc</div>
-      </Boxed>
+      </Boxed> */}
       <div className="max-w-sm">
-        <div className="flex flex-col mb-5 gap-y-5">
+        <RenderList
+          items={todos}
+          render={(todo) => (
+            <div className="flex items-center gap-x-3" key={todo.id}>
+              <span>{todo.text}s</span>
+              <button
+                onClick={() => onRemoveTodo(todo.id)}
+                className="p-2 text-sm font-medium text-white bg-red-500 rounded-lg"
+              >
+                Remove
+              </button>
+            </div>
+          )}
+        ></RenderList>
+        <RenderList
+          items={products}
+          render={(products) => <div>{JSON.stringify(products)}</div>}
+        ></RenderList>
+        {/* <div className="flex flex-col mb-5 gap-y-5">
           {todos.map((todo) => (
             <div className="flex items-center gap-x-3" key={todo.id}>
               <span>{todo.text}s</span>
@@ -48,7 +67,8 @@ const App = () => {
               </button>
             </div>
           ))}
-        </div>
+        </div> */}
+
         <div className="flex items-center gap-x-5">
           <input
             type="text"
@@ -65,6 +85,16 @@ const App = () => {
       </div>
     </div>
   );
+};
+
+const RenderList = <T,>({
+  items,
+  render,
+}: {
+  items: T[];
+  render: (item: T) => React.ReactNode;
+}) => {
+  return <>{items.map((item) => render(item))}</>;
 };
 
 const List = ({
