@@ -1,54 +1,17 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
+import useTodos from "./hooks/useTodos";
 
 const Heading = ({ title }: { title: string }) => {
   return <h2 className="mb-5 text-2xl font-bold font-primary">{title}</h2>;
 };
-type ActionType =
-  | { type: "ADD"; text: string }
-  | { type: "REMOVE"; id: number };
-interface Todo {
-  id: number;
-  text: string;
-}
-const todoReducer = (state: Todo[], action: ActionType) => {
-  switch (action.type) {
-    case "ADD":
-      return [
-        ...state,
-        {
-          id: state.length,
-          text: action.text,
-        },
-      ];
-    case "REMOVE":
-      return state.filter((todo: Todo) => todo.id !== action.id);
-    default:
-      throw new Error("errors");
-  }
-};
+
 const initialState: Todo[] = [];
 interface Data {
   text: string;
 }
 
 const App = () => {
-  const [todos, dispatch] = useReducer(todoReducer, initialState);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const OnRemoveTodo = (todoId: number) => {
-    dispatch({
-      type: "REMOVE",
-      id: todoId,
-    });
-  };
-  const onAddTodo = () => {
-    if (inputRef.current) {
-      dispatch({
-        type: "ADD",
-        text: inputRef.current.value,
-      });
-      inputRef.current.value = "";
-    }
-  };
+  const { todos, onAddTodo, onRemoveTodo, inputRef } = useTodos([]);
   //
   const [data, setData] = useState<Data | null>(null);
   useEffect(() => {
@@ -78,7 +41,7 @@ const App = () => {
             <div className="flex items-center gap-x-3" key={todo.id}>
               <span>{todo.text}s</span>
               <button
-                onClick={() => OnRemoveTodo(todo.id)}
+                onClick={() => onRemoveTodo(todo.id)}
                 className="p-2 text-sm font-medium text-white bg-red-500 rounded-lg"
               >
                 Remove
